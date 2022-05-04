@@ -1,3 +1,7 @@
+body {
+  background-color: #F0F0F0;
+}
+
 .container {
   max-width: 960px;
   margin-top: 2rem;
@@ -11,4 +15,13 @@
 
 .section-right {
   width: 100%;
+}
+
+h1 {
+  text-shadow: black 0em 0em 0.2em;
+}
+
+label {
+  font-size: 1.3rem;
+  font-weight: 600;
 }

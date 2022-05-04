@@ -16,13 +16,13 @@
 
       <div class="user-list">
         <label for="userListFormControlInput" class="form-label">抽獎名單</label>
-        <textarea type="text" class="form-control" id="userListFormControlInput" name="userListInput" placeholder="請輸入抽獎名單" rows="6">{{userListInput}}</textarea>
+        <textarea type="text" class="form-control" id="userListFormControlInput" name="userListInput" placeholder="請輸入抽獎名單" rows="6" required>{{userListInput}}</textarea>
       </div>
     </section>
 
     <section class="section-right">
       <div class="draw-list">
-        <label for="drawListFormControlInput" class="form-label">得獎名單</label>
+        <label for="drawListFormControlInput" class="form-label">得獎名單(不重複)</label>
         <textarea type="text" class="form-control" id="drawListFormControlInput" placeholder="以下為得獎名單"
           rows="10">{{winnerList}}</textarea>
       </div>

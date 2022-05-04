@@ -16,10 +16,14 @@ app.get('/', (req, res) => {
 })
 
 app.post('/', (req, res) => {
-  const { awardInput, awardNumInput } = req.body
-  const winnerList = generateWinner(awardInput, awardNumInput)
+  const { awardInput, awardNumInput, userListInput } = req.body
+  const userListInputTrim = userListInput.trim()
+  const userList = userListInputTrim.split(/\n|\r\n/g)
+  const winnerList = generateWinner(awardInput, awardNumInput, userList)
 
-  res.render('index', { awardInput, awardNumInput, winnerList })
+  console.log(userList)
+
+  res.render('index', { awardInput, awardNumInput, userListInput: userListInputTrim, winnerList })
 })
 
 app.listen(PORT, () => {
