@@ -1,33 +1,30 @@
 <form action="/" method="POST">
   <div class="container">
     <section class="section-left">
-      <div class="awards">
-        <div class="row mb-4">
-          <div class="award col-8">
-            <label for="awardFormControlInput" class="form-label">獎項</label>
-            <input type="text" class="form-control" id="awardFormControlInput" name="awardInput" placeholder="請輸入獎項名稱" value="{{awardInput}}">
-          </div>
-          <div class="award-num col-4">
-            <label for="awardNumFormControlInput" class="form-label">數量</label>
-            <input type="number" class="form-control" id="awardNumFormControlInput" name="awardNumInput" placeholder="請輸入數量" value="{{awardNumInput}}">
-          </div>
-        </div>
+      <div class="awards mb-3">
+        <label for="awardFormControlInput" class="form-label">獎項設定</label>
+        <textarea type="text" class="form-control" id="awardFormControlInput" name="awardInput"
+          placeholder="請輸入獎項名稱, 數量" rows="3" required>{{awardInput}}</textarea>
       </div>
 
       <div class="user-list">
         <label for="userListFormControlInput" class="form-label">抽獎名單</label>
-        <textarea type="text" class="form-control" id="userListFormControlInput" name="userListInput" placeholder="請輸入抽獎名單" rows="6" required>{{userListInput}}</textarea>
+        <textarea type="text" class="form-control" id="userListFormControlInput" name="userListInput"
+          placeholder="請輸入抽獎名單" rows="10" required>{{userListInput}}</textarea>
       </div>
     </section>
 
     <section class="section-right">
       <div class="draw-list">
-        <label for="drawListFormControlInput" class="form-label">得獎名單(不重複)</label>
+        <label for="drawListFormControlInput" class="form-label">得獎名單</label>
         <textarea type="text" class="form-control" id="drawListFormControlInput" placeholder="以下為得獎名單"
-          rows="10">{{winnerList}}</textarea>
+          rows="16">{{winnerList}}</textarea>
       </div>
     </section>
 
   </div>
-  <button type="submit" class="btn btn-primary d-grid col-1 mx-auto mt-3">抽獎</button>
+
+  <div class="btnBox mt-3">
+    <button type="submit" class="btn btn-primary d-grid col-1 mx-auto">抽獎</button>
+  </div>
 </form>

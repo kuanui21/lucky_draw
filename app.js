@@ -16,14 +16,33 @@ app.get('/', (req, res) => {
 })
 
 app.post('/', (req, res) => {
-  const { awardInput, awardNumInput, userListInput } = req.body
+  // const { awardInput, awardNumInput, userListInput } = req.body
+  // const userListInputTrim = userListInput.trim()
+  // const userList = userListInputTrim.split(/\n|\r\n/g)
+  // const winnerList = generateWinner(awardInput, awardNumInput, userList)
+
+  // res.render('index', { awardInput, awardNumInput, userListInput: userListInputTrim, winnerList })
+
+  const { awardInput, userListInput } = req.body
+  const awards = awardInput.split(/\r\n/g)
   const userListInputTrim = userListInput.trim()
   const userList = userListInputTrim.split(/\n|\r\n/g)
-  const winnerList = generateWinner(awardInput, awardNumInput, userList)
+  const awardsList = []
+  let winnerList = []
 
-  console.log(userList)
+  for (let i = 0; i < awards.length; i++) {
+    const newAwars = awards[i].split(',')
+    const awardName = newAwars[0]
+    const awardNum = Number(newAwars[1])
+    const newUserList = userList
 
-  res.render('index', { awardInput, awardNumInput, userListInput: userListInputTrim, winnerList })
+    for (let j = 1; j <= awardNum; j++) {
+      const winners = generateWinner(awardsList, newUserList)
+      winnerList += awardName + `-${j}： ${winners}\n`
+    }
+  }
+
+  res.render('index', { awardInput, userListInput: userListInputTrim, winnerList })
 })
 
 app.listen(PORT, () => {
