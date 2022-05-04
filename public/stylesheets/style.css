@@ -1,0 +1,14 @@
+.container {
+  max-width: 960px;
+  margin-top: 2rem;
+  display: flex;
+}
+
+.section-left {
+  width: 100%;
+  margin-right: 2rem;
+}
+
+.section-right {
+  width: 100%;
+}
