@@ -23,26 +23,49 @@ app.post('/', (req, res) => {
 
   // res.render('index', { awardInput, awardNumInput, userListInput: userListInputTrim, winnerList })
 
-  const { awardInput, userListInput } = req.body
+  const { awardInput, userListInput, isOnly } = req.body
   const awards = awardInput.split(/\r\n/g)
   const userListInputTrim = userListInput.trim()
+  const originalUserList = userListInputTrim.trim().split(/\n|\r\n/g)
   const userList = userListInputTrim.split(/\n|\r\n/g)
   const awardsList = []
   let winnerList = []
+  let total = ''
+  let newUserList = userList
+
+  if (isOnly === 'on') {
+    const result = userList.filter(function (element, index, userList) {
+      return userList.indexOf(element) === index
+    })
+    newUserList = result
+  }
 
   for (let i = 0; i < awards.length; i++) {
     const newAwars = awards[i].split(',')
     const awardName = newAwars[0]
     const awardNum = Number(newAwars[1])
-    const newUserList = userList
 
     for (let j = 1; j <= awardNum; j++) {
-      const winners = generateWinner(awardsList, newUserList)
+      let winners = generateWinner(awardsList, newUserList, isOnly)
+
+      if (winners.length === 0) {
+        winners = '(從缺)'
+      }
+
       winnerList += awardName + `-${j}： ${winners}\n`
+      total++
     }
   }
 
-  res.render('index', { awardInput, userListInput: userListInputTrim, winnerList })
+  res.render('index', {
+    awardInput,
+    userListInput: userListInputTrim,
+    isOnly,
+    winnerList,
+    awardCount: awards.length,
+    total,
+    userNum: originalUserList.length
+  })
 })
 
 app.listen(PORT, () => {

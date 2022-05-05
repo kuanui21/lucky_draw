@@ -1,27 +1,39 @@
 <form action="/" method="POST">
   <div class="container">
     <section class="section-left">
-      <div class="awards mb-3">
+      <div class="awards mb-1">
         <label for="awardFormControlInput" class="form-label">獎項設定</label>
         <textarea type="text" class="form-control" id="awardFormControlInput" name="awardInput"
           placeholder="請輸入獎項名稱, 數量" rows="3" required>{{awardInput}}</textarea>
       </div>
+      {{#if awardInput}}
+      <span class="d-flex justify-content-end mb-2 mx-2">預計抽出{{awardCount}}個獎項，共{{total}}名</span>
+      {{/if}}
 
-      <div class="user-list">
+      <div class="user-list mb-1">
         <label for="userListFormControlInput" class="form-label">抽獎名單</label>
         <textarea type="text" class="form-control" id="userListFormControlInput" name="userListInput"
           placeholder="請輸入抽獎名單" rows="10" required>{{userListInput}}</textarea>
       </div>
+      {{#if userListInput}}
+      <span class="d-flex justify-content-end mb-2 mx-2">抽獎名單共有{{userNum}}人次</span>
+      {{/if}}
+
     </section>
 
     <section class="section-right">
       <div class="draw-list">
-        <label for="drawListFormControlInput" class="form-label">得獎名單</label>
+        <div class="d-flex">
+          <label for="drawListFormControlInput" class="form-label">得獎名單</label>
+          <div class="form-check d-flex justify-content-center">
+            <input type="checkbox" class="form-check-input" id="isOnly" name="isOnly" {{#if isOnly}}checked{{/if}}>
+            <label class="form-check-label" for="isOnly">每人僅限得獎一次</label>
+          </div>
+        </div>
         <textarea type="text" class="form-control" id="drawListFormControlInput" placeholder="以下為得獎名單"
           rows="16">{{winnerList}}</textarea>
       </div>
     </section>
-
   </div>
 
   <div class="btnBox mt-3">
