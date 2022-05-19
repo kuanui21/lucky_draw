@@ -1,4 +1,4 @@
-# 餐廳清單
+# 抽獎小幫手
 
 ![Index page about Restaurant List](./public/image/lucky_draw.PNG)
 
